@@ -78,9 +78,9 @@ const EditToDoModal = ({visible, formData, callbackEvents}: ITodoFromProps) => {
     const onSubmit = (values: z.infer<typeof formSchema>) => {
         if (!values.createdAt) {
             values.createdAt = new Date().getTime()
-            callbackEvents({type: values.id ? "edit" : "add", data: values as ITodoItem})
-            setIsVisible(false)
         }
+        callbackEvents({type: values.id ? "edit" : "add", data: values as ITodoItem})
+        setIsVisible(false)
     }
 
     return (

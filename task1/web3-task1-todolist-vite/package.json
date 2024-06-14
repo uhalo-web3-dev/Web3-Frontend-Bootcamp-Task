@@ -1,5 +1,5 @@
 {
-  "name": "web3-task1-todolist",
+  "name": "web3-task1-todolist-vite",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -23,6 +23,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
+    "lodash-es": "^4.17.21",
     "lucide-react": "^0.394.0",
     "next-themes": "^0.3.0",
     "react": "^18.2.0",
@@ -35,6 +36,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
     "@types/node": "^20.14.2",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",

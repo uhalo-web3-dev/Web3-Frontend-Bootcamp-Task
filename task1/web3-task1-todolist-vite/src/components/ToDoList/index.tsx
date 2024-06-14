@@ -27,7 +27,7 @@ const ToDoList = ({list, callbackEvents}: IProps) => {
                     <div className="flex flex-col gap-2 p-4 pl-0 pt-0">
                         {
                             todoList.map((item, index) => (
-                                <ToDoItem item={item} key={index} callbackEvents={handleCallEvents}></ToDoItem>
+                                <ToDoItem item={item} index={index + 1} key={index} callbackEvents={handleCallEvents}></ToDoItem>
                             ))
                         }
                     </div>
@@ -35,7 +35,7 @@ const ToDoList = ({list, callbackEvents}: IProps) => {
             }
             {
                 todoList.length === 0 && (
-                    <div className="flex flex-col list-center justify-center w-full h-[500px] border border-gray-200 rounded-md">
+                    <div className="flex flex-col items-center justify-center w-full h-[500px] border border-gray-200 rounded-md">
                         <div className="text-md text-gray-400">暂无待办任务</div>
                     </div>
                 )

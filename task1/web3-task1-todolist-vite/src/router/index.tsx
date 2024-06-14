@@ -5,6 +5,7 @@ import DefaultLayout from '@/layouts/DefaultLayout';
 
 const Home = lazy(() => import('@/pages/Home'))
 const Todo = lazy(() => import('@/pages/Todo'))
+const Blockchain = lazy(() => import('@/pages/Blockchain'))
 
 export const routes: RouteObject[] = [
     {
@@ -19,8 +20,12 @@ export const routes: RouteObject[] = [
                 element: <DefaultLayout><Suspense fallback={'加载中'}> <Home/></Suspense></DefaultLayout>,
             },
             {
-                path: 'todo',
+                path: 'todolist',
                 element: <DefaultLayout><Suspense fallback={'加载中'}> <Todo/></Suspense></DefaultLayout>,
+            },
+            {
+                path: 'blockchain-basic',
+                element: <DefaultLayout><Suspense fallback={'加载中'}> <Blockchain/></Suspense></DefaultLayout>,
             },
         ],
     },

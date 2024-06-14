@@ -3,6 +3,7 @@ import LayoutProps from './LayoutProps';
 import styles from './DefaultLayout.module.css';
 import Dock from '@/components/Dock'
 import {cn} from "@/lib/utils.ts";
+import {Toaster} from "@/components/ui/sonner"
 
 const DefaultLayout: React.FC<LayoutProps> = ({children}) => {
     return (
@@ -18,6 +19,8 @@ const DefaultLayout: React.FC<LayoutProps> = ({children}) => {
                 {/* 页脚 */}
                 <p>© 2024 小莫唐尼</p>
             </footer>
+
+            <Toaster/>
         </div>
     );
 };

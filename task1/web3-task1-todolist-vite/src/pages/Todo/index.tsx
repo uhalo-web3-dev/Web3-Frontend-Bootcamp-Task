@@ -21,7 +21,7 @@ const Todo = () => {
     const [editTodoDetail, setEditTodoDetail] = useState<ITodoItem | null>(null);
 
     useEffect(() => {
-        document.title = `Code Task1：Todolist 丨 ${GlobalAppMetadata.title} - ${GlobalAppMetadata.subtitle}`;
+        document.title = `Task1：Code Todolist  丨 ${GlobalAppMetadata.title} - ${GlobalAppMetadata.subtitle}`;
         const _todos = SessionStorageUtil.get<Array<ITodoItem>>(LOCAL_DATA_KEYS.todos);
         if (_todos && todos.length === 0) {
             setTodos(_todos)
@@ -95,7 +95,7 @@ const Todo = () => {
         console.log("监听列表事件 onTodoListCallbackEvents", data);
         const map: { [key in ListMapCallbackEventTypes]: () => void } = {
             edit: () => {
-                setTodoDetail(data.data as ITodoItem)
+                setEditTodoDetail(data.data as ITodoItem)
                 setVisibleModal(true)
             },
             delete: () => {
@@ -123,6 +123,17 @@ const Todo = () => {
             addModal: () => {
                 setEditTodoDetail(null)
                 setVisibleModal(true)
+            },
+            refresh: () => {
+                const list = SessionStorageUtil.get<Array<ITodoItem>>(LOCAL_DATA_KEYS.todos)
+                if (!list) return;
+                setTodos(list)
+                setTodoDetail(null)
+            },
+            empty: () => {
+                toast("提示", {
+                    description: data.data as string,
+                })
             }
         }
         map[data.type]()
@@ -157,7 +168,7 @@ const Todo = () => {
 
             <div className="relative z-[1] flex">
                 <div className="w-3/12 p-3">
-                    <div className="p-4 pl-0">
+                    <div className="p-4 pl-0 pr-4">
                         <AddToDo callbackEvents={onTodoAddCallbackEvents}></AddToDo>
                     </div>
                     <div className="h-[660px]">

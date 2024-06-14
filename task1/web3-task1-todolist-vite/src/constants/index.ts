@@ -14,7 +14,7 @@ export const WebsiteAuthor = Object.freeze({
     avatar: "https://blog.925i.cn/upload/avatar.jpg",
     githubId: "XiaoMo-Donald",
     githubLink: "https://github.com/XiaoMo-Donald",
-    bootcampTaskLink: "https://github.com/XiaoMo-Donald/Web3-Frontend-Bootcamp-Task",
+    bootcampTaskLink: "https://github.com/uhalo-web3-dev/Web3-Frontend-Bootcamp-Task",
 })
 
 // dock 导航数据
@@ -23,13 +23,7 @@ export const DockNavbarList: Readonly<Array<IDockNavbar>> = [
         key: "Todolist",
         title: "Task1",
         desc: "react todolist",
-        path: "/todo",
-        icon: ""
-    }, {
-        key: "Blockchain",
-        title: "Task2",
-        desc: "blockchain basic",
-        path: "/blockchain-basic",
+        path: "/todolist",
         icon: ""
     }, {
         key: "Home",
@@ -38,18 +32,12 @@ export const DockNavbarList: Readonly<Array<IDockNavbar>> = [
         path: "/home",
         icon: ""
     }, {
-        key: "Contract",
-        title: "Task3",
-        desc: "nft contract",
-        path: "/contract",
+        key: "Blockchain",
+        title: "Task2",
+        desc: "blockchain basic",
+        path: "/blockchain-basic",
         icon: ""
-    }, {
-        key: "Components",
-        title: "Task4",
-        desc: "nft components",
-        path: "/components",
-        icon: ""
-    }
+    },
 ]
 
 // 本地存储的key值

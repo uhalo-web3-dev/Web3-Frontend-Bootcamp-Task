@@ -1,27 +1,36 @@
 import {cn} from "@/lib/utils.ts";
 import {format} from "date-fns";
 import {Badge} from "@/components/ui/badge.tsx";
-import type {ICallbackEventsCallbackData, ITodoItem} from "@/types";
+import {ICallbackEventsCallbackData, ITodoItem, ListMapCallbackEventTypes} from "@/types";
+
 
 interface IProps {
     item: ITodoItem,
-    callbackEvents: (callbackData: ICallbackEventsCallbackData) => void,
+    index: number,
+    callbackEvents: (callbackData: ICallbackEventsCallbackData<ListMapCallbackEventTypes>) => void,
 }
 
-const ToDoItem = ({item, callbackEvents}: IProps) => {
+const ToDoItem = ({item, index, callbackEvents}: IProps) => {
+
     return (
         <>
             <div
                 className={cn(
                     "flex flex-col list-start gap-2 rounded-lg border p-3 text-left text-sm transition-all cursor-pointer hover:bg-accent"
                 )}
-                onClick={(e) => callbackEvents({event: e, type: 'detail', data: item})}
             >
-                <div className="flex w-full flex-col gap-1">
-                    <div className="flex list-center">
-                        <div className="flex list-center gap-2">
-                            <div className={cn("font-semibold text-lg", item.state === 'complete' ? 'line-through text-gray-600' : '')}>
-                                {item.title}
+
+                <div
+                    className="flex w-full flex-col gap-1"
+                    onClick={(e) => callbackEvents({event: e, type: 'detail', data: item})}
+                >
+                    <div className="flex items-center">
+                        <div className="flex items-center gap-2">
+                            <div
+                                className={cn("font-semibold text-lg flex items-center")}
+                            >
+                                <span className="bg-gray-950 rounded text-xs p-0.5 pl-1.5 pr-1.5 text-white">{index}</span>
+                                <span className={cn('ml-1', item.state === 'complete' ? 'line-through text-gray-600' : '')}>{item.title}</span>
                             </div>
                             {
                                 item.state === 'todo' && (
@@ -41,7 +50,7 @@ const ToDoItem = ({item, callbackEvents}: IProps) => {
                         </div>
                         {
                             item.createdAt && (
-                                <div className="ml-auto text-xs  text-muted-foreground">
+                                <div className="ml-auto text-xs text-muted-foreground">
                                     {format(new Date(item.createdAt), "yyyy-MM-dd HH:mm")}
                                 </div>
                             )
@@ -49,7 +58,9 @@ const ToDoItem = ({item, callbackEvents}: IProps) => {
                     </div>
                 </div>
                 <div
-                    className={cn("line-clamp-2 text-xs text-muted-foreground", item.state === 'complete' ? 'line-through text-gray-600' : '')}>
+                    className={cn("line-clamp-2 text-xs text-muted-foreground", item.state === 'complete' ? 'line-through text-gray-600' : '')}
+                    onClick={(e) => callbackEvents({event: e, type: 'detail', data: item})}
+                >
                     待办内容： {item.description.substring(0, 300)}
                 </div>
                 {
@@ -61,6 +72,8 @@ const ToDoItem = ({item, callbackEvents}: IProps) => {
                 }
 
                 <div className="flex list-center gap-2">
+                    <Badge className="rounded-md cursor-pointer" variant="default"
+                           onClick={(e) => callbackEvents({event: e, type: "detail", data: item})}> 详情 </Badge>
                     <Badge className="rounded-md cursor-pointer" variant="default"
                            onClick={(e) => callbackEvents({event: e, type: "edit", data: item})}> 编辑 </Badge>
                     {

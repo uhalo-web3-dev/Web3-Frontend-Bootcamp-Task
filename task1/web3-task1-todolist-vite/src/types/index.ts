@@ -26,14 +26,14 @@ export interface ITodoEvents {
 
 export interface ICallbackEventsCallbackData<T> {
     type: T,
-    data?: ITodoItem | boolean | null,
+    data?: ITodoItem | boolean | string | null,
     event?: React.MouseEvent<HTMLDivElement | HTMLButtonElement>,
 }
 
 // ----------------事件类型---------------
 
 // 监听添加组件事件
-export type AddMapCallbackEventTypes = 'add' | 'addModal'
+export type AddMapCallbackEventTypes = 'add' | 'addModal' | 'empty' | 'refresh'
 
 // 监听列表事件
 export type ListMapCallbackEventTypes = 'edit' | 'delete' | 'complete' | 'detail'

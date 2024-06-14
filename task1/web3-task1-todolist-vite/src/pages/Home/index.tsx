@@ -1,7 +1,13 @@
 import {Avatar, AvatarFallback, AvatarImage,} from "@/components/ui/avatar"
-import {WebsiteAuthor} from "@/constants";
+import {GlobalAppMetadata, WebsiteAuthor} from "@/constants";
+import {useEffect} from "react";
 
 const Home = () => {
+
+    useEffect(() => {
+        document.title = `${GlobalAppMetadata.title} - ${GlobalAppMetadata.subtitle}`;
+    }, [])
+
     return <div className="relative z-[1] flex h-screen flex-col items-center justify-center">
         <div className="mt-[-35px] flex flex-col items-center justify-center">
             <Avatar className="w-20 h-20 border-2 border-white shadow-lg shadow-blue-100 animate-bounce transition hover:scale-105">
