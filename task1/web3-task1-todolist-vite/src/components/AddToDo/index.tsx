@@ -33,7 +33,7 @@ const AddToDo = ({callbackEvents}: IProps) => {
             id: undefined,
             title: data.title,
             description: data.title,
-            state: "todo",
+            state: "doing",
             createdAt: undefined,
             completeAt: undefined
         }

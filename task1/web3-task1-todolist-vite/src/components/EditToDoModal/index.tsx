@@ -35,7 +35,7 @@ const EditToDoModal = ({visible, formData, callbackEvents}: ITodoFromProps) => {
             id: undefined,
             title: "",
             description: "",
-            state: "todo",
+            state: "doing",
             createdAt: undefined,
             completeAt: undefined
         }
@@ -57,7 +57,7 @@ const EditToDoModal = ({visible, formData, callbackEvents}: ITodoFromProps) => {
                     id: undefined,
                     title: "",
                     description: "",
-                    state: "todo",
+                    state: "doing",
                     createdAt: undefined,
                     completeAt: undefined
                 })
