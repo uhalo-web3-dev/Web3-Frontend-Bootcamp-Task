@@ -8,7 +8,7 @@ import ToDoList from "@/components/ToDoList";
 import AddToDo from "@/components/AddToDo";
 import EditToDoModal from "@/components/EditToDoModal";
 import ToDoDetail from "@/components/ToDoDetail";
-import Title from "@/components/Title";
+import Header from "@/components/Header";
 
 
 const Todo = () => {
@@ -164,7 +164,7 @@ const Todo = () => {
         <>
             <EditToDoModal visible={visibleModal} formData={editTodoDetail} callbackEvents={onTodoAddModalCallbackEvents}></EditToDoModal>
 
-            <Title title="Task1：Code Todolist"></Title>
+            <Header title="Task1：Code Todolist"></Header>
 
             <div className="relative z-[1] flex">
                 <div className="w-3/12 p-3">

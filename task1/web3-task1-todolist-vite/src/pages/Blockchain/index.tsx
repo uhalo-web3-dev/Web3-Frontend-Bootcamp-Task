@@ -1,4 +1,4 @@
-import Title from "@/components/Title";
+import Header from "@/components/Header";
 import {useEffect} from "react";
 import {GlobalAppMetadata} from "@/constants";
 
@@ -10,7 +10,7 @@ const Blockchain = () => {
 
     return (
         <>
-            <Title title="Task2：Blockchain Basic QA"></Title>
+            <Header title="Task2：Blockchain Basic QA"></Header>
             <div className="w-full h-[600px] flex flex-col items-center justify-center text-green-500">
                 this is Blockchain Basic QA page,it's todo...
             </div>
