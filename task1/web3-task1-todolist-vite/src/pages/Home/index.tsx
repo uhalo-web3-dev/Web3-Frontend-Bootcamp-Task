@@ -21,13 +21,13 @@ const Home = () => {
                 <h3 className="text-lg">View Bootcamp In Github</h3>
                 <a
                     className="text-center mt-3 pt-2 pb-2 pl-4 pr-4 rounded-md text-xs flex items-center text-gray-600 bg-gray-100 bg-opacity-50 hover:bg-opacity-100 hover:underline"
-                    href="https://github.com/openbuildxyz/Web3-Frontend-Bootcamp" target="_blank"
+                    href={WebsiteAuthor.openbuildWeb3Bootcamp} target="_blank"
                 >
-                    https://github.com/openbuildxyz/Web3-Frontend-Bootcamp
+                    {WebsiteAuthor.openbuildWeb3Bootcamp}
                 </a>
                 <a
                     className="text-center mt-3 pt-2 pb-2 pl-4 pr-4 rounded-md text-xs flex items-center text-gray-600 bg-gray-100 bg-opacity-50 hover:bg-opacity-100 hover:underline"
-                    href="https://github.com/XiaoMo-Donald/Web3-Frontend-Bootcamp-Task" target="_blank"
+                    href={WebsiteAuthor.bootcampTaskLink} target="_blank"
                 >
                     {WebsiteAuthor.bootcampTaskLink}
                 </a>

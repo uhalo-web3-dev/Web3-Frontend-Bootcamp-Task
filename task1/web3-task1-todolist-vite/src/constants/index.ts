@@ -14,6 +14,7 @@ export const WebsiteAuthor = Object.freeze({
     avatar: "https://blog.925i.cn/upload/avatar.jpg",
     githubId: "XiaoMo-Donald",
     githubLink: "https://github.com/XiaoMo-Donald",
+    openbuildWeb3Bootcamp: "https://github.com/openbuildxyz/Web3-Frontend-Bootcamp",
     bootcampTaskLink: "https://github.com/uhalo-web3-dev/Web3-Frontend-Bootcamp-Task",
 })
 
