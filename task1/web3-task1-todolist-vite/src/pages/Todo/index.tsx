@@ -166,8 +166,8 @@ const Todo = () => {
 
             <Header title="Task1：Code Todolist"></Header>
 
-            <div className="relative z-[1] flex">
-                <div className="w-3/12 p-3">
+            <div className="w-full relative z-[1] flex">
+                <div className="box-content 2xl:w-3/12 xl:w-4/12 lg:w-5/12 p-3">
                     <div className="p-4 pl-0 pr-4">
                         <AddToDo callbackEvents={onTodoAddCallbackEvents}></AddToDo>
                     </div>
@@ -176,7 +176,7 @@ const Todo = () => {
                     </div>
                 </div>
 
-                <div className="w-9/12 p-5 pt-5 pl-0">
+                <div className="box-content 2xl:w-9/12 xl:w-8/12 lg:w-7/12 p-5 pt-5 pl-0">
                     <ToDoDetail item={todoDetail}></ToDoDetail>
                 </div>
             </div>

@@ -12,6 +12,12 @@ interface IProps {
 const ToDoList = ({list, callbackEvents}: IProps) => {
     const [todoList, setTodoList] = useState<ITodoItem[]>([]);
     useEffect(() => {
+
+        // 根据日期排序
+        list.sort((a, b) => {
+            return Number(b.createdAt) - Number(a.createdAt);
+        })
+
         setTodoList(list);
     }, [list])
 
