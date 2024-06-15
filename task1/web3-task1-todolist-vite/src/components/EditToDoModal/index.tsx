@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {zodResolver} from "@hookform/resolvers/zod"
 import {useForm} from "react-hook-form"
 import {z} from "zod"
-import type {ICallbackEventsCallbackData, ITodoItem, ModalMapCallbackEventTypes} from "@/types";
+import type {IComponentPropsBase, ITodoItem, ModalMapCallbackEventTypes} from "@/types";
 
 import {Button} from "@/components/ui/button"
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage,} from "@/components/ui/form"
@@ -11,10 +11,9 @@ import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVal
 import {Input} from "@/components/ui/input"
 import {Textarea} from "@/components/ui/textarea"
 
-interface ITodoFromProps {
+interface IProps extends IComponentPropsBase<ModalMapCallbackEventTypes> {
     visible: boolean,
-    formData?: ITodoItem | null,
-    callbackEvents: (data: ICallbackEventsCallbackData<ModalMapCallbackEventTypes>) => void
+    formData?: ITodoItem | null
 }
 
 const formSchema = z.object({
@@ -26,7 +25,7 @@ const formSchema = z.object({
     completeAt: z.number().optional()
 })
 
-const EditToDoModal = ({visible, formData, callbackEvents}: ITodoFromProps) => {
+const EditToDoModal = ({visible, formData, onCallbackEvents}: IProps) => {
     const [isVisible, setIsVisible] = useState<boolean>(false)
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -69,9 +68,9 @@ const EditToDoModal = ({visible, formData, callbackEvents}: ITodoFromProps) => {
     const onTodoModalOpenChange = (isOpen: boolean) => {
         setIsVisible(isOpen)
         if (isOpen) {
-            callbackEvents({type: "open", data: isOpen})
+            onCallbackEvents({type: "open", data: isOpen})
         } else {
-            callbackEvents({type: "close", data: isOpen})
+            onCallbackEvents({type: "close", data: isOpen})
         }
     }
 
@@ -79,7 +78,7 @@ const EditToDoModal = ({visible, formData, callbackEvents}: ITodoFromProps) => {
         if (!values.createdAt) {
             values.createdAt = new Date().getTime()
         }
-        callbackEvents({type: values.id ? "edit" : "add", data: values as ITodoItem})
+        onCallbackEvents({type: values.id ? "edit" : "add", data: values as ITodoItem})
         setIsVisible(false)
     }
 

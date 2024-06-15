@@ -4,10 +4,9 @@ import {z} from "zod"
 import {Input} from "@/components/ui/input"
 import {Button} from '@/components/ui/button'
 import {Form, FormControl, FormField, FormItem, FormMessage,} from "@/components/ui/form"
-import type {AddMapCallbackEventTypes, ICallbackEventsCallbackData, ITodoItem} from "@/types";
+import type {AddMapCallbackEventTypes, IComponentPropsBase, ITodoItem} from "@/types";
 
-interface IProps {
-    callbackEvents: (data: ICallbackEventsCallbackData<AddMapCallbackEventTypes>) => void
+interface IProps extends IComponentPropsBase<AddMapCallbackEventTypes> {
 }
 
 const formSchema = z.object({
@@ -15,7 +14,7 @@ const formSchema = z.object({
 })
 
 
-const AddToDo = ({callbackEvents}: IProps) => {
+const AddToDo = ({onCallbackEvents}: IProps) => {
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -26,7 +25,7 @@ const AddToDo = ({callbackEvents}: IProps) => {
 
     const onSubmit = (data: z.infer<typeof formSchema>) => {
         if (!data.title) {
-            callbackEvents({type: "empty", data: "请填写待办事项"})
+            onCallbackEvents({type: "empty", data: "请填写待办事项"})
             return;
         }
         const todoData: ITodoItem = {
@@ -37,7 +36,7 @@ const AddToDo = ({callbackEvents}: IProps) => {
             createdAt: undefined,
             completeAt: undefined
         }
-        callbackEvents({type: "add", data: todoData})
+        onCallbackEvents({type: "add", data: todoData})
         form.reset({
             title: ""
         })
@@ -53,16 +52,17 @@ const AddToDo = ({callbackEvents}: IProps) => {
                         render={({field}) => (
                             <FormItem className="grow">
                                 <FormControl>
-                                    <Input placeholder="请输入待办内容" {...field} />
+                                    <Input placeholder="请输入待办内容搜索/保存" {...field} />
                                 </FormControl>
                                 <FormMessage/>
                             </FormItem>
                         )}
                     />
                     <div className="flex items-center gap-x-2 flex-shrink-0">
+                        <Button type="button" onClick={() => onCallbackEvents({type: "search", data: form.getValues().title})}>搜索</Button>
                         <Button type="submit">保存</Button>
-                        <Button type="button" onClick={() => callbackEvents({type: "addModal"})}>添加</Button>
-                        <Button type="button" onClick={() => callbackEvents({type: "refresh"})}>刷新</Button>
+                        <Button type="button" onClick={() => onCallbackEvents({type: "addModal"})}>添加</Button>
+                        {/*<Button type="button" onClick={() => onCallbackEvents({type: "refresh"})}>刷新</Button>*/}
                     </div>
                 </form>
             </Form>

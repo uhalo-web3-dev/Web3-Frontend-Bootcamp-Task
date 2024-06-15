@@ -21,12 +21,6 @@ export interface ITodoItem {
     completeAt?: number | undefined,
 }
 
-export type TodoEventsType = 'add' | 'delete' | 'edit' | 'detail' | 'complete'
-
-export interface ITodoEvents {
-    type: TodoEventsType,
-    data: ITodoItem
-}
 
 export interface ICallbackEventsCallbackData<T> {
     type: T,
@@ -34,10 +28,14 @@ export interface ICallbackEventsCallbackData<T> {
     event?: React.MouseEvent<HTMLDivElement | HTMLButtonElement>,
 }
 
+export interface IComponentPropsBase<T> {
+    onCallbackEvents: (callbackData: ICallbackEventsCallbackData<T>) => void,
+}
+
 // ----------------事件类型---------------
 
 // 监听添加组件事件
-export type AddMapCallbackEventTypes = 'add' | 'addModal' | 'empty' | 'refresh'
+export type AddMapCallbackEventTypes = 'add' | 'addModal' | 'empty' | 'refresh' | 'search'
 
 // 监听列表事件
 export type ListMapCallbackEventTypes = 'edit' | 'delete' | 'complete' | 'detail' | 'doing'

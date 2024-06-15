@@ -3,7 +3,11 @@ import {DockNavbarList} from '@/constants'
 import type {IDockNavbar} from "@/types";
 import {useNavigate} from "react-router-dom";
 
-export default function Dock({activeNavbar}: { activeNavbar?: IDockNavbar }) {
+interface IProps {
+    activeNavbar?: IDockNavbar
+}
+
+const Dock = ({activeNavbar}: IProps) => {
     const [routerActive, setRouterActive] = useState<IDockNavbar>()
     const navigate = useNavigate()
     useEffect(() => {
@@ -29,3 +33,5 @@ export default function Dock({activeNavbar}: { activeNavbar?: IDockNavbar }) {
         </ul>
     )
 }
+
+export default Dock

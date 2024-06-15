@@ -15,6 +15,7 @@ import ToDoCount from "@/components/ToDoCount";
 const Todo = () => {
 
     const [todos, setTodos] = useState<Array<ITodoItem>>([])
+    const [filterTodos, setFilterTodos] = useState<Array<ITodoItem>>([])
     const [todoDetail, setTodoDetail] = useState<ITodoItem | null>(null);
 
     // 新增编辑所需要
@@ -24,8 +25,11 @@ const Todo = () => {
     useEffect(() => {
         document.title = `Task1：Code Todolist  丨 ${GlobalAppMetadata.title} - ${GlobalAppMetadata.subtitle}`;
         const _todos = SessionStorageUtil.get<Array<ITodoItem>>(LOCAL_DATA_KEYS.todos);
-        if (_todos && todos.length === 0) {
-            setTodos(_todos)
+        if (_todos) {
+            if (todos.length === 0) {
+                setTodos(_todos)
+            }
+            setFilterTodos(_todos)
         }
     }, [todos])
 
@@ -115,12 +119,18 @@ const Todo = () => {
             complete: () => {
                 const _todoData = data.data as ITodoItem;
                 _todoData.state = 'complete'
+                if (todoDetail && todoDetail.id === _todoData.id) {
+                    setTodoDetail(_todoData)
+                }
                 editTodo(_todoData)
                 refresh()
             },
             doing: () => {
                 const _todoData = data.data as ITodoItem;
                 _todoData.state = 'doing'
+                if (todoDetail && todoDetail.id === _todoData.id) {
+                    setTodoDetail(_todoData)
+                }
                 editTodo(_todoData)
                 refresh()
             }
@@ -138,6 +148,10 @@ const Todo = () => {
             addModal: () => {
                 setEditTodoDetail(null)
                 setVisibleModal(true)
+            },
+            search: () => {
+                const searchKey = data.data as string;
+                setFilterTodos(todos.filter(x => x.title.indexOf(searchKey) !== -1 || x.description.indexOf(searchKey) !== -1))
             },
             refresh: () => {
                 refresh();
@@ -175,18 +189,18 @@ const Todo = () => {
 
     return (
         <>
-            <EditToDoModal visible={visibleModal} formData={editTodoDetail} callbackEvents={onTodoAddModalCallbackEvents}></EditToDoModal>
+            <EditToDoModal visible={visibleModal} formData={editTodoDetail} onCallbackEvents={onTodoAddModalCallbackEvents}></EditToDoModal>
 
             <Header title="Task1：Code Todolist"></Header>
 
             <div className="w-full relative z-[1] flex">
                 <div className="box-content 2xl:w-3/12 xl:w-4/12 lg:w-5/12 p-3">
                     <div className="p-4 pl-0 pr-4">
-                        <AddToDo callbackEvents={onTodoAddCallbackEvents}></AddToDo>
+                        <AddToDo onCallbackEvents={onTodoAddCallbackEvents}></AddToDo>
                         <ToDoCount list={todos} className="mt-4 p-3 py-2.5 border border-gray-200 rounded-md"></ToDoCount>
                     </div>
                     <div className="h-[660px]">
-                        <ToDoList list={todos} callbackEvents={onTodoListCallbackEvents}></ToDoList>
+                        <ToDoList list={filterTodos} onCallbackEvents={onTodoListCallbackEvents}></ToDoList>
                     </div>
                 </div>
 

@@ -7,7 +7,7 @@ interface IProps {
 }
 
 const todoStateMap: { [key: string]: string } = {
-    doing: "处理中",
+    doing: "进行中",
     todo: '待处理',
     complete: '已完成',
 }

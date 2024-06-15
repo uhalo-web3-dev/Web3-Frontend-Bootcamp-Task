@@ -1,15 +1,14 @@
 import {useEffect, useState} from "react";
-import type {ICallbackEventsCallbackData, ITodoItem, ListMapCallbackEventTypes} from "@/types";
+import {ICallbackEventsCallbackData, IComponentPropsBase, ITodoItem, ListMapCallbackEventTypes} from "@/types";
 
 import {ScrollArea} from "@/components/ui/scroll-area"
 import ToDoItem from "@/components/ToDoItem";
 
-interface IProps {
-    callbackEvents: (callbackData: ICallbackEventsCallbackData<ListMapCallbackEventTypes>) => void,
+interface IProps extends IComponentPropsBase<ListMapCallbackEventTypes> {
     list: ITodoItem[],
 }
 
-const ToDoList = ({list, callbackEvents}: IProps) => {
+const ToDoList = ({list, onCallbackEvents}: IProps) => {
     const [todoList, setTodoList] = useState<ITodoItem[]>([]);
     useEffect(() => {
 
@@ -23,7 +22,7 @@ const ToDoList = ({list, callbackEvents}: IProps) => {
 
     const handleCallEvents = (data: ICallbackEventsCallbackData<ListMapCallbackEventTypes>) => {
         data.event?.preventDefault();
-        callbackEvents(data)
+        onCallbackEvents(data)
     }
 
     return (
@@ -33,7 +32,7 @@ const ToDoList = ({list, callbackEvents}: IProps) => {
                     <div className="flex flex-col gap-2">
                         {
                             todoList.map((item, index) => (
-                                <ToDoItem item={item} index={todoList.length-index} key={index} callbackEvents={handleCallEvents}></ToDoItem>
+                                <ToDoItem item={item} index={todoList.length - index} key={index} onCallbackEvents={handleCallEvents}></ToDoItem>
                             ))
                         }
                     </div>

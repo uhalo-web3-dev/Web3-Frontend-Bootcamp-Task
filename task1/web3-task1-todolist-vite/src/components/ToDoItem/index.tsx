@@ -1,16 +1,15 @@
 import {cn} from "@/lib/utils.ts";
 import {format} from "date-fns";
 import {Badge} from "@/components/ui/badge.tsx";
-import {ICallbackEventsCallbackData, ITodoItem, ListMapCallbackEventTypes} from "@/types";
+import {IComponentPropsBase, ITodoItem, ListMapCallbackEventTypes} from "@/types";
 
 
-interface IProps {
+interface IProps extends IComponentPropsBase<ListMapCallbackEventTypes> {
     item: ITodoItem,
-    index: number,
-    callbackEvents: (callbackData: ICallbackEventsCallbackData<ListMapCallbackEventTypes>) => void,
+    index: number
 }
 
-const ToDoItem = ({item, index, callbackEvents}: IProps) => {
+const ToDoItem = ({item, index, onCallbackEvents}: IProps) => {
 
     return (
         <>
@@ -21,7 +20,7 @@ const ToDoItem = ({item, index, callbackEvents}: IProps) => {
             >
                 <div
                     className="w-full flex flex-col items-start gap-2 "
-                    onClick={(e) => callbackEvents({event: e, type: 'detail', data: item})}
+                    onClick={(e) => onCallbackEvents({event: e, type: 'detail', data: item})}
                 >
                     <div
                         className="flex w-full flex-col gap-1"
@@ -75,13 +74,13 @@ const ToDoItem = ({item, index, callbackEvents}: IProps) => {
 
                 <div className="mt-2 flex list-center gap-2">
                     <Badge className="rounded-md cursor-pointer" variant="default"
-                           onClick={(e) => callbackEvents({event: e, type: "detail", data: item})}> 详情 </Badge>
+                           onClick={(e) => onCallbackEvents({event: e, type: "detail", data: item})}> 详情 </Badge>
                     <Badge className="rounded-md cursor-pointer" variant="default"
-                           onClick={(e) => callbackEvents({event: e, type: "edit", data: item})}> 编辑 </Badge>
+                           onClick={(e) => onCallbackEvents({event: e, type: "edit", data: item})}> 编辑 </Badge>
                     {
                         item.state === 'doing' && (
                             <Badge className="rounded-md cursor-pointer" variant="default"
-                                   onClick={(e) => callbackEvents({event: e, type: "complete", data: item})}>
+                                   onClick={(e) => onCallbackEvents({event: e, type: "complete", data: item})}>
                                 完成
                             </Badge>
                         )
@@ -89,13 +88,13 @@ const ToDoItem = ({item, index, callbackEvents}: IProps) => {
                     {
                         item.state === 'complete' && (
                             <Badge className="rounded-md cursor-pointer" variant="default"
-                                   onClick={(e) => callbackEvents({event: e, type: "doing", data: item})}>
+                                   onClick={(e) => onCallbackEvents({event: e, type: "doing", data: item})}>
                                 待办
                             </Badge>
                         )
                     }
                     <Badge className="rounded-md cursor-pointer" variant="destructive"
-                           onClick={(e) => callbackEvents({event: e, type: "delete", data: item})}> 删除 </Badge>
+                           onClick={(e) => onCallbackEvents({event: e, type: "delete", data: item})}> 删除 </Badge>
                 </div>
             </div>
         </>
