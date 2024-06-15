@@ -36,7 +36,7 @@ export interface ICallbackEventsCallbackData<T> {
 export type AddMapCallbackEventTypes = 'add' | 'addModal' | 'empty' | 'refresh'
 
 // 监听列表事件
-export type ListMapCallbackEventTypes = 'edit' | 'delete' | 'complete' | 'detail'
+export type ListMapCallbackEventTypes = 'edit' | 'delete' | 'complete' | 'detail' | 'doing'
 
 // 监听弹窗事件
 export type ModalMapCallbackEventTypes = 'open' | 'close' | 'add' | 'edit'

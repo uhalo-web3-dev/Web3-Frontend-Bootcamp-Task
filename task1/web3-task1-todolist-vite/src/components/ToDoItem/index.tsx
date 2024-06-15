@@ -79,10 +79,18 @@ const ToDoItem = ({item, index, callbackEvents}: IProps) => {
                     <Badge className="rounded-md cursor-pointer" variant="default"
                            onClick={(e) => callbackEvents({event: e, type: "edit", data: item})}> 编辑 </Badge>
                     {
-                        item.state !== 'complete' && (
+                        item.state === 'doing' && (
                             <Badge className="rounded-md cursor-pointer" variant="default"
                                    onClick={(e) => callbackEvents({event: e, type: "complete", data: item})}>
                                 完成
+                            </Badge>
+                        )
+                    }
+                    {
+                        item.state === 'complete' && (
+                            <Badge className="rounded-md cursor-pointer" variant="default"
+                                   onClick={(e) => callbackEvents({event: e, type: "doing", data: item})}>
+                                待办
                             </Badge>
                         )
                     }

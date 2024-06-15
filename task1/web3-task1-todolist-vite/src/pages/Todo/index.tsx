@@ -28,6 +28,12 @@ const Todo = () => {
         }
     }, [todos])
 
+    // 刷新逻辑
+    const refresh = () => {
+        const list = SessionStorageUtil.get<Array<ITodoItem>>(LOCAL_DATA_KEYS.todos)
+        setTodos(list ? list : [])
+    }
+
     // 新增逻辑
     const addTodo = (todo: ITodoItem) => {
         if (!todo.id) {
@@ -100,6 +106,7 @@ const Todo = () => {
             },
             delete: () => {
                 deleteTodo(data.data as ITodoItem)
+                refresh()
             },
             detail: () => {
                 setTodoDetail(data.data as ITodoItem)
@@ -108,7 +115,14 @@ const Todo = () => {
                 const _todoData = data.data as ITodoItem;
                 _todoData.state = 'complete'
                 editTodo(_todoData)
+                refresh()
             },
+            doing: () => {
+                const _todoData = data.data as ITodoItem;
+                _todoData.state = 'doing'
+                editTodo(_todoData)
+                refresh()
+            }
         }
         map[data.type]();
     }
@@ -125,9 +139,7 @@ const Todo = () => {
                 setVisibleModal(true)
             },
             refresh: () => {
-                const list = SessionStorageUtil.get<Array<ITodoItem>>(LOCAL_DATA_KEYS.todos)
-                if (!list) return;
-                setTodos(list)
+                refresh();
                 setTodoDetail(null)
             },
             empty: () => {

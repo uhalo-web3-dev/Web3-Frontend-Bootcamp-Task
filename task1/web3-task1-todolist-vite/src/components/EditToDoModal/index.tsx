@@ -131,7 +131,7 @@ const EditToDoModal = ({visible, formData, callbackEvents}: ITodoFromProps) => {
                                                 </SelectTrigger>
                                                 <SelectContent>
                                                     <SelectGroup>
-                                                        <SelectItem value="todo">待处理</SelectItem>
+                                                        {/*<SelectItem value="todo">待处理</SelectItem>*/}
                                                         <SelectItem value="doing">进行中</SelectItem>
                                                         <SelectItem value="complete">已完成</SelectItem>
                                                     </SelectGroup>

@@ -26,7 +26,7 @@ const ToDoDetail = ({item}: IProps) => {
 
     return (
         <>
-            <div className="mt-16 p-3 w-full border border-gray-200 rounded-md text-gray-600">
+            <div className="flex-col items-center mt-16 p-3 w-full border border-gray-200 rounded-md text-gray-600">
                 <div className="border-b border-gray-200 mb-4">
                     <h1 className="text-gray-950 font-semibold text-md mb-1"> 待办详情 </h1>
                 </div>
@@ -60,7 +60,7 @@ const ToDoDetail = ({item}: IProps) => {
                 }
                 {
                     !item && (
-                        <div className="flex flex-col items-center justify-center h-[150px] ">
+                        <div className="flex flex-col items-center justify-center min-h-[400px] ">
                             <span className="text-gray-500">未选择待办任务</span>
                         </div>
                     )
