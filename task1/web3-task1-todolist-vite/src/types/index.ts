@@ -1,5 +1,9 @@
 import React from "react";
 
+export interface IComponentBase {
+    className?: string;
+}
+
 export interface IDockNavbar {
     key: string,
     title: string,

@@ -31,7 +31,7 @@ const ToDoItem = ({item, index, callbackEvents}: IProps) => {
                                 <div
                                     className={cn("font-semibold text-lg flex items-center")}
                                 >
-                                    <span className="bg-gray-950 rounded text-xs p-0.5 pl-1.5 pr-1.5 text-white">{index}</span>
+                                    <span className="bg-gray-950 rounded text-xs font-normal p-0.5 pl-1.5 pr-1.5 text-white">{index}</span>
                                     <span className={cn('ml-1', item.state === 'complete' ? 'line-through text-gray-600' : '')}>{item.title}</span>
                                 </div>
                                 {
@@ -73,7 +73,7 @@ const ToDoItem = ({item, index, callbackEvents}: IProps) => {
                     }
                 </div>
 
-                <div className="flex list-center gap-2">
+                <div className="mt-2 flex list-center gap-2">
                     <Badge className="rounded-md cursor-pointer" variant="default"
                            onClick={(e) => callbackEvents({event: e, type: "detail", data: item})}> 详情 </Badge>
                     <Badge className="rounded-md cursor-pointer" variant="default"

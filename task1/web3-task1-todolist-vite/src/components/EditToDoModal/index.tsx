@@ -99,7 +99,7 @@ const EditToDoModal = ({visible, formData, callbackEvents}: ITodoFromProps) => {
                                     <FormItem>
                                         <FormLabel>标题</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="请输入待办任务标题" {...field} />
+                                            <Input placeholder="请输入待办标题" {...field} />
                                         </FormControl>
                                         <FormMessage/>
                                     </FormItem>
@@ -112,7 +112,7 @@ const EditToDoModal = ({visible, formData, callbackEvents}: ITodoFromProps) => {
                                     <FormItem>
                                         <FormLabel>内容</FormLabel>
                                         <FormControl>
-                                            <Textarea placeholder="请输入内容" {...field} />
+                                            <Textarea placeholder="请输入待办内容" {...field} />
                                         </FormControl>
                                         <FormMessage/>
                                     </FormItem>

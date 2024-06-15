@@ -27,13 +27,13 @@ const ToDoList = ({list, callbackEvents}: IProps) => {
     }
 
     return (
-        <ScrollArea className="h-full">
+        <ScrollArea className="h-full p-4 pl-0 pt-0">
             {
                 todoList.length !== 0 && (
-                    <div className="flex flex-col gap-2 p-4 pl-0 pt-0">
+                    <div className="flex flex-col gap-2">
                         {
                             todoList.map((item, index) => (
-                                <ToDoItem item={item} index={index + 1} key={index} callbackEvents={handleCallEvents}></ToDoItem>
+                                <ToDoItem item={item} index={todoList.length-index} key={index} callbackEvents={handleCallEvents}></ToDoItem>
                             ))
                         }
                     </div>

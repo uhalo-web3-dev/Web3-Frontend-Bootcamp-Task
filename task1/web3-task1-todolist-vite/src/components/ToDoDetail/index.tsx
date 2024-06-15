@@ -60,8 +60,8 @@ const ToDoDetail = ({item}: IProps) => {
                 }
                 {
                     !item && (
-                        <div className="flex flex-col items-center justify-center min-h-[400px] ">
-                            <span className="text-gray-500">未选择待办任务</span>
+                        <div className="flex flex-col items-center justify-center min-h-[480px]">
+                            <span className="text-gray-400">未选择待办任务</span>
                         </div>
                     )
                 }

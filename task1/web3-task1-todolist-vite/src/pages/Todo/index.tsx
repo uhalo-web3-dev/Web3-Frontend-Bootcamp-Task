@@ -9,6 +9,7 @@ import AddToDo from "@/components/AddToDo";
 import EditToDoModal from "@/components/EditToDoModal";
 import ToDoDetail from "@/components/ToDoDetail";
 import Header from "@/components/Header";
+import ToDoCount from "@/components/ToDoCount";
 
 
 const Todo = () => {
@@ -46,8 +47,8 @@ const Todo = () => {
 
         SessionStorageUtil.set<Array<ITodoItem>>(LOCAL_DATA_KEYS.todos, list);
         setTodos(list)
-        toast("提示", {
-            description: `【${todo.title}】数据保存成功！`,
+        toast.success("提示", {
+            description: `任务 [ ${todo.title} ] 数据保存成功！`,
         })
     }
 
@@ -67,8 +68,8 @@ const Todo = () => {
         list.splice(oldTodoIndex, 1, todo)
         SessionStorageUtil.set<Array<ITodoItem>>(LOCAL_DATA_KEYS.todos, list);
         setTodos(list);
-        toast("提示", {
-            description: `【${todo.title}】数据保存成功！`,
+        toast.success("提示", {
+            description: `任务 [ ${todo.title} ] 数据保存成功！`,
         })
     }
 
@@ -90,8 +91,8 @@ const Todo = () => {
                 setTodoDetail(null)
             }
 
-            toast("提示", {
-                description: `【${todo.title}】数据删除成功！`,
+            toast.success("提示", {
+                description: `任务 [ ${todo.title} ] 数据删除成功！`,
             })
         }
     }
@@ -143,7 +144,7 @@ const Todo = () => {
                 setTodoDetail(null)
             },
             empty: () => {
-                toast("提示", {
+                toast.warning("提示", {
                     description: data.data as string,
                 })
             }
@@ -182,6 +183,7 @@ const Todo = () => {
                 <div className="box-content 2xl:w-3/12 xl:w-4/12 lg:w-5/12 p-3">
                     <div className="p-4 pl-0 pr-4">
                         <AddToDo callbackEvents={onTodoAddCallbackEvents}></AddToDo>
+                        <ToDoCount list={todos} className="mt-4 p-3 py-2.5 border border-gray-200 rounded-md"></ToDoCount>
                     </div>
                     <div className="h-[660px]">
                         <ToDoList list={todos} callbackEvents={onTodoListCallbackEvents}></ToDoList>
