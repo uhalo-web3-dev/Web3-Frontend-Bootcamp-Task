@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {DockNavbarList} from '@/constants'
 import type {IDockNavbar} from "@/types";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 interface IProps {
     activeNavbar?: IDockNavbar
@@ -10,9 +10,22 @@ interface IProps {
 const Dock = ({activeNavbar}: IProps) => {
     const [routerActive, setRouterActive] = useState<IDockNavbar>()
     const navigate = useNavigate()
+    const location = useLocation()
+
+    const handleSetCurrentActiveRouter = () => {
+        console.log('location', location)
+        const findRouter = DockNavbarList.find(x => x.path === location.pathname)
+        setRouterActive(findRouter)
+    }
+
     useEffect(() => {
-        setRouterActive(activeNavbar)
+        if (activeNavbar) {
+            setRouterActive(activeNavbar)
+        } else {
+            handleSetCurrentActiveRouter()
+        }
     }, [activeNavbar])
+
 
     const routeTo = (item: IDockNavbar) => {
         setRouterActive(item)
